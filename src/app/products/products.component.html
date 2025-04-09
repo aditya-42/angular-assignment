@@ -1,23 +1,12 @@
-<div *ngIf="loading; else productList">
-    <p>Loading products...</p>
-  </div>
-  
-  <ng-template #productList>
+<!-- src/app/products/products.component.html -->
+<div *ngIf="loading">Loading products...</div>
+<div *ngIf="error">{{ error }}</div>
 
-    <div *ngIf="error" class="error">
-      <p>{{ error }}</p>
-    </div>
-  
-    <div *ngIf="!error && products.length > 0">
-      <div *ngFor="let product of products">
-        <div class="product">
-          <h3>{{ product.title }}</h3>
-        </div>
-      </div>
-    </div>
+<div class="products-wrapper" *ngIf="!loading && !error">
+  <app-product 
+    *ngFor="let product of products"
+    [product]="product"
+  ></app-product>
+</div>
 
-    <div *ngIf="!error && products.length === 0">
-      <p>No products available.</p>
-    </div>
-  </ng-template>
   

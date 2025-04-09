@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
+import { ProductComponent } from '../product/product.component';
 
 type products = {
   title:string
@@ -8,7 +9,7 @@ type products = {
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -21,9 +22,9 @@ export class ProductsComponent {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    // Fetch users when the component initializes
     this.apiService.getProducts().subscribe(
       (data) => {
+        console.log(data);
         this.products = data;
         this.loading = false;  
       },

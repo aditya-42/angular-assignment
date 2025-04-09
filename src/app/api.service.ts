@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getProducts():Observable<any>{
-    const url = `${this.baseUrl}/products`;  // Endpoint for users
+    const url = `${this.baseUrl}/products`;
     return this.http.get(url).pipe(
       map(response => response),  
       catchError(error => {
